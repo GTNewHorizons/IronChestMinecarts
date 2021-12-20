@@ -1,28 +1,35 @@
 buildscript {
     repositories {
-        mavenCentral()
         maven {
             name = "forge"
-            url = "http://files.minecraftforge.net/maven"
+            url = "https://maven.minecraftforge.net"
         }
         maven {
             name = "sonatype"
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
+        maven {
+            name = "Scala CI dependencies"
+            url = "https://repo1.maven.org/maven2/"
+        }
+        maven {
+            name = "jitpack"
+            url = "https://jitpack.io"
+        }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        classpath 'com.github.GTNewHorizons:ForgeGradle:1.2.4'
     }
 }
 
 apply plugin: 'forge'
 
-version = "1.0.4"
+version = "1.0.4-GTNH"
 group = "ganymedes01.ironchestminecarts"
 archivesBaseName = "IronChestMinecarts"
 
 minecraft {
-    version = "1.7.10-10.13.4.1558-1.7.10"
+    version = "1.7.10-10.13.4.1614-1.7.10"
     runDir = "eclipse/assets"
 }
 
