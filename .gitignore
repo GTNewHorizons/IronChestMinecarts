@@ -4,3 +4,7 @@
 build
 /libs
 .gradle
+*.bat
+*.iml
+IronChestMinecart.ipr
+IronChestMinecart.iws
