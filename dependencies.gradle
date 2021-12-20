@@ -1,0 +1,9 @@
+// Add your dependencies here
+
+dependencies {
+    compile("com.github.GTNewHorizons:ironchest:master-SNAPSHOT:dev")
+
+    compileOnly("com.github.GTNewHorizons:Railcraft:master-SNAPSHOT:api") {
+        transitive = false
+    }
+}

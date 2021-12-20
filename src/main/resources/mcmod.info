@@ -1,9 +1,10 @@
 [
 {
-  "modid": "ironchestminecarts",
-  "name": "Iron Chest Minecarts",
+  "modid": "${modId}",
+  "name": "${modName}",
   "description": "Minecarts for all the chests added by Iron Chests!",
-  "version": "1.0.4",
+  "version": "${modVersion}",
+  "mcversion": "${minecraftVersion}",
   "url": "",
   "updateUrl": "",
   "authorList": [
