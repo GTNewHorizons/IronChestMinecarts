@@ -75,7 +75,6 @@ public class IronChestMinecarts {
 				name = "dirt";
 			String ore = "chest" + name.substring(0, 1).toUpperCase() + name.substring(1);
 			OreDictionary.registerOre(ore, chest);
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(minecart), "x", "y", 'x', ore, 'y', Items.minecart));
 
 			// Rendering
 			if (renderMinecarts3D)
