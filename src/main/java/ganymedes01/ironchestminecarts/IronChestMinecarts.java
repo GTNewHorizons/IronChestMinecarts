@@ -3,6 +3,7 @@ package ganymedes01.ironchestminecarts;
 import java.util.HashMap;
 import java.util.Map;
 
+import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
 import org.apache.logging.log4j.Level;
 
 import cpw.mods.fml.common.FMLLog;
@@ -64,7 +65,7 @@ public class IronChestMinecarts {
 			String name = type.name().toLowerCase();
 
 			// Item registering
-			Item minecart = new ItemMinecartIronChest(type).setUnlocalizedName(Reference.MOD_ID + ".minecart_chest_" + name).setTextureName(Reference.MOD_ID + ":minecart_chest_" + name);
+			Item minecart = new ItemMinecartIronChest(type).setUnlocalizedName(Reference.MOD_ID + ".minecart_chest_" + name).setTextureName(Reference.MOD_ID + ":minecart_chest_" + name.replace("teel","ilver"));
 			GameRegistry.registerItem(minecart, "minecart_chest_" + name);
 			carts.put(type, minecart);
 
@@ -80,6 +81,22 @@ public class IronChestMinecarts {
 			if (renderMinecarts3D)
 				if (event.getSide() == Side.CLIENT)
 					MinecraftForgeClient.registerItemRenderer(minecart, new ItemMinecartChestRenderer());
+		}
+	}
+
+	//cpw.mods.fml.common.registry.GameRegistry#registerTileEntityWithAlternatives
+	@Mod.EventHandler
+	public void missingMapping(FMLMissingMappingsEvent event) {
+		for (FMLMissingMappingsEvent.MissingMapping mapping : event.getAll()) {
+			if (mapping.type == GameRegistry.Type.BLOCK) {
+				if ("ironchestminecarts:minecart_chest_silver".equals(mapping.name)) {
+					mapping.remap(GameRegistry.findBlock("ironchestminecarts", "minecart_chest_steel"));
+				}
+			} else if (mapping.type == GameRegistry.Type.ITEM) {
+				if ("ironchestminecarts:minecart_chest_silver".equals(mapping.name)) {
+					mapping.remap(GameRegistry.findItem("ironchestminecarts", "minecart_chest_steel"));
+				}
+			}
 		}
 	}
 }
