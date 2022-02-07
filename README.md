@@ -3,6 +3,10 @@ IronChestMinecarts
 
 Minecarts for Iron Chests!
 
+## Permissions
+
+IronChestMinecarts GTNH edition is forked from [Ganymedes01's Repo](https://github.com/ganymedes01/IronChestMinecarts) with permission as documented below.
+
 Hello,
 
 Go ahead and fork it, just give credit to the original author (me lol) and i’m okay with you doing whichever modifications you want!
