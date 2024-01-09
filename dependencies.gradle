@@ -1,9 +1,9 @@
 // Add your dependencies here
 
 dependencies {
-    compile("com.github.GTNewHorizons:ironchest:6.0.69:dev")
+    api("com.github.GTNewHorizons:ironchest:6.0.74:dev")
 
-    compileOnly("com.github.GTNewHorizons:Railcraft:9.13.6:api") {
+    compileOnly("com.github.GTNewHorizons:Railcraft:9.15.3:api") {
         transitive = false
     }
 }

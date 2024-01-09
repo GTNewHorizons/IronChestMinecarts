@@ -4,9 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import mods.railcraft.api.carts.IItemTransfer;
-import mods.railcraft.api.core.items.IStackFilter;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -32,6 +29,8 @@ import cpw.mods.ironchest.IronChest;
 import cpw.mods.ironchest.IronChestType;
 import cpw.mods.ironchest.ItemChestChanger;
 import ganymedes01.ironchestminecarts.IronChestMinecarts;
+import mods.railcraft.api.carts.IItemTransfer;
+import mods.railcraft.api.core.items.IStackFilter;
 
 @SuppressWarnings("all")
 @Optional.Interface(iface = "mods.railcraft.api.carts.IItemTransfer", modid = "Railcraft")
