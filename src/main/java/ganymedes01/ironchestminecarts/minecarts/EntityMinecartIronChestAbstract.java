@@ -7,6 +7,7 @@ import java.util.Set;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecartChest;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.minecart.MinecartInteractEvent;
@@ -295,6 +297,16 @@ public abstract class EntityMinecartIronChestAbstract extends EntityMinecartChes
         }
 
         return offer;
+    }
+
+    @Override
+    @Optional.Method(modid = "Railcraft")
+    public String getCommandSenderName() {
+        String s = EntityList.getEntityString(this);
+        if (s == null) {
+            super.getCommandSenderName();
+        }
+        return StatCollector.translateToLocal("entity." + s + ".name.railcraft");
     }
 
     @Override
