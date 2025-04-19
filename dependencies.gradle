@@ -3,7 +3,7 @@
 dependencies {
     api("com.github.GTNewHorizons:ironchest:6.0.74:dev")
 
-    compileOnly("com.github.GTNewHorizons:Railcraft:9.15.3:api") {
+    compileOnly("com.github.GTNewHorizons:Railcraft:9.16.19:dev") {
         transitive = false
     }
 }

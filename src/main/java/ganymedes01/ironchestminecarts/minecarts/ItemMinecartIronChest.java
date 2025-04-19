@@ -4,8 +4,9 @@ import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemMinecart;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-
+import cpw.mods.fml.common.Optional;
 import cpw.mods.ironchest.IronChestType;
 
 public class ItemMinecartIronChest extends ItemMinecart {
@@ -33,5 +34,11 @@ public class ItemMinecartIronChest extends ItemMinecart {
             stack.stackSize--;
             return true;
         } else return false;
+    }
+
+    @Optional.Method(modid = "Railcraft")
+    public String getItemStackDisplayName(ItemStack itemStack) {
+        String key = "item.ironchestminecarts.minecart_chest_" + type.name().toLowerCase() + ".name";
+        return StatCollector.translateToLocal(key + ".railcraft");
     }
 }
