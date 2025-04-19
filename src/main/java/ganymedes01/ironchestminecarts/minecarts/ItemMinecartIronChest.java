@@ -6,6 +6,7 @@ import net.minecraft.item.ItemMinecart;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+
 import cpw.mods.fml.common.Optional;
 import cpw.mods.ironchest.IronChestType;
 
