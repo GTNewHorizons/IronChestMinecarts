@@ -6,7 +6,6 @@ import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecartChest;
@@ -22,15 +21,20 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.minecart.MinecartInteractEvent;
 
-import com.google.common.reflect.ClassPath;
-import com.google.common.reflect.ClassPath.ClassInfo;
-
 import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.ironchest.IronChest;
 import cpw.mods.ironchest.IronChestType;
 import cpw.mods.ironchest.ItemChestChanger;
 import ganymedes01.ironchestminecarts.IronChestMinecarts;
+import ganymedes01.ironchestminecarts.minecarts.types.EntityMinecartCopperChest;
+import ganymedes01.ironchestminecarts.minecarts.types.EntityMinecartCrystalChest;
+import ganymedes01.ironchestminecarts.minecarts.types.EntityMinecartDiamondChest;
+import ganymedes01.ironchestminecarts.minecarts.types.EntityMinecartDirtChest;
+import ganymedes01.ironchestminecarts.minecarts.types.EntityMinecartGoldChest;
+import ganymedes01.ironchestminecarts.minecarts.types.EntityMinecartIronChest;
+import ganymedes01.ironchestminecarts.minecarts.types.EntityMinecartObsidianChest;
+import ganymedes01.ironchestminecarts.minecarts.types.EntityMinecartSteelChest;
 import mods.railcraft.api.carts.IItemTransfer;
 import mods.railcraft.api.core.items.IStackFilter;
 
@@ -43,24 +47,21 @@ public abstract class EntityMinecartIronChestAbstract extends EntityMinecartChes
 
     static {
         try {
-            Class<?> clss = EntityMinecartIronChestAbstract.class;
-            String name = clss.getCanonicalName();
-            name = name.substring(0, name.lastIndexOf('.'));
-            for (ClassInfo clazzInfo : ClassPath.from(clss.getClassLoader()).getTopLevelClasses(name + "." + "types")) {
-                Class<? extends Entity> clazz = (Class<? extends Entity>) clazzInfo.load();
-                if (clss.isAssignableFrom(clazz)) {
-                    IronChestType type = ((EntityMinecartIronChestAbstract) clazz.getConstructor(World.class)
-                            .newInstance((World) null)).type();
-                    EntityRegistry.registerModEntity(
-                            clazz,
-                            "minecart_chest_" + type.name().toLowerCase().replace("teel", "ilver"),
-                            type.ordinal(),
-                            IronChestMinecarts.instance,
-                            80,
-                            3,
-                            true);
-                    map.put(type, (Class<? extends EntityMinecartIronChestAbstract>) clazz);
-                }
+            Class<?>[] carts = { EntityMinecartCopperChest.class, EntityMinecartCrystalChest.class,
+                    EntityMinecartDiamondChest.class, EntityMinecartDirtChest.class, EntityMinecartGoldChest.class,
+                    EntityMinecartIronChest.class, EntityMinecartObsidianChest.class, EntityMinecartSteelChest.class };
+            for (Class<?> c : carts) {
+                Class<? extends EntityMinecartIronChestAbstract> clazz = (Class<? extends EntityMinecartIronChestAbstract>) c;
+                IronChestType type = clazz.getConstructor(World.class).newInstance((World) null).type();
+                EntityRegistry.registerModEntity(
+                        clazz,
+                        "minecart_chest_" + type.name().toLowerCase().replace("teel", "ilver"),
+                        type.ordinal(),
+                        IronChestMinecarts.instance,
+                        80,
+                        3,
+                        true);
+                map.put(type, clazz);
             }
         } catch (Exception e) {
             e.printStackTrace();
